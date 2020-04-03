@@ -5,12 +5,13 @@
 /*
 total 4bytes
 
-|0.5byte CMD| 3.5byte Parm|
+0.5byte CMD                | 3.5byte args
 
-CMD								| 	parm
-0x0X  set freq  	|  uint32  freq
-0x10  set motorA  |  uint8 dir  uint16 pwm
-0x11  set motorB  |  uint8 dir  uint16 pwm
+CMD                        | arg
+0x0X set freq              | uint32 freq (X is 4 MSB of 24 bit freq)
+0x10 set motorA            | uint8 dir, uint16 pwm
+0x11 set motorB            | uint8 dir, uint16 pwm
+0x12 set motorA and motorB | uint8 dir, uint16 pwm
 */
 
 void user_i2c_proc(uint8_t i2c_data[4])
@@ -30,7 +31,7 @@ void user_i2c_proc(uint8_t i2c_data[4])
         }
         case 1:
         {
-            uint8_t motor = i2c_data[0] & 0x01;
+            uint8_t motor = i2c_data[0] & 0x03;
             uint8_t dir = i2c_data[1];
             uint16_t pulse = (uint16_t)i2c_data[2] << 8 | (uint16_t)i2c_data[3];
 

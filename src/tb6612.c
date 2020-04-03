@@ -33,10 +33,19 @@ void Set_TB6612_Dir(uint8_t motor, uint8_t dir, uint16_t pulse)
                 pin_set(PIN_AIN2);
                 pwm_a(0);
             }
-            else
+            else if (motor == MOTOR_B)
             {
                 pin_set(PIN_BIN1);
                 pin_set(PIN_BIN2);
+                pwm_b(0);
+            }
+            else if (motor == MOTOR_AB)
+            {
+                pin_set(PIN_AIN1);
+                pin_set(PIN_AIN2);
+                pin_set(PIN_BIN1);
+                pin_set(PIN_BIN2);
+                pwm_a(0);
                 pwm_b(0);
             }
         break;
@@ -49,10 +58,19 @@ void Set_TB6612_Dir(uint8_t motor, uint8_t dir, uint16_t pulse)
                 pin_set(PIN_AIN2);
                 pwm_a(pulse);
             }
-            else
+            else if (motor == MOTOR_B)
             {
                 pin_clear(PIN_BIN1);
                 pin_set(PIN_BIN2);
+                pwm_b(pulse);
+            }
+            else if (motor == MOTOR_AB)
+            {
+                pin_clear(PIN_AIN1);
+                pin_set(PIN_AIN2);
+                pin_clear(PIN_BIN1);
+                pin_set(PIN_BIN2);
+                pwm_a(pulse);
                 pwm_b(pulse);
             }
         break;
@@ -65,10 +83,19 @@ void Set_TB6612_Dir(uint8_t motor, uint8_t dir, uint16_t pulse)
                 pin_clear(PIN_AIN2);
                 pwm_a(pulse);
             }
-            else
+            else if (motor == MOTOR_B)
             {
                 pin_set(PIN_BIN1);
                 pin_clear(PIN_BIN2);
+                pwm_b(pulse);
+            }
+            else if (motor == MOTOR_AB)
+            {
+                pin_set(PIN_AIN1);
+                pin_clear(PIN_AIN2);
+                pin_set(PIN_BIN1);
+                pin_clear(PIN_BIN2);
+                pwm_a(pulse);
                 pwm_b(pulse);
             }
         break;
@@ -81,10 +108,19 @@ void Set_TB6612_Dir(uint8_t motor, uint8_t dir, uint16_t pulse)
                 pin_clear(PIN_AIN2);
                 pwm_a(0);
             }
-            else
+            else if (motor == MOTOR_B)
             {
                 pin_clear(PIN_BIN1);
                 pin_clear(PIN_BIN2);
+                pwm_b(0);
+            }
+            else if (motor == MOTOR_AB)
+            {
+                pin_clear(PIN_AIN1);
+                pin_clear(PIN_AIN2);
+                pin_clear(PIN_BIN1);
+                pin_clear(PIN_BIN2);
+                pwm_a(0);
                 pwm_b(0);
             }
         break;
